@@ -159,6 +159,7 @@ function NoemaApp() {
           </div>
 
           <div className="relative z-20 h-screen md:h-[900px] pt-6">
+            <div key={screen} className="screen-enter h-full">
             {screen === "welcome" && <WelcomeScreen onStart={() => goto("login")} />}
             {screen === "login" && <LoginScreen onLogin={() => goto("dashboard")} onRegister={() => goto("register")} />}
             {screen === "register" && <RegisterScreen onDone={() => goto("dashboard")} />}
@@ -190,7 +191,9 @@ function NoemaApp() {
             {screen === "planner" && <PlannerScreen tasks={tasks} setTasks={setTasks} focusMinutes={focusMinutesLogged} />}
             {screen === "battery" && <BatteryScreen value={battery} triageReplies={triageReplies} tasksDone={tasksDone} focusMinutes={focusMinutesLogged} />}
             {screen === "bubble" && <BubbleScreen contacts={contacts} />}
+            </div>
           </div>
+
 
           {!chromeless && <TabBar current={screen} onChange={goto} />}
         </div>
