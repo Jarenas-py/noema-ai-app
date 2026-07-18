@@ -60,8 +60,9 @@ type ChatMsg = { id: string; from: "noema" | "user"; text: string; time: string 
 /* ============== SHARED UI ============== */
 
 const Screen = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div className={`h-full w-full overflow-y-auto overflow-x-hidden px-5 pb-28 pt-6 ${className}`}>{children}</div>
+  <div className={`h-full w-full overflow-y-auto overflow-x-hidden px-5 pb-28 pt-6 stagger-parent ${className}`}>{children}</div>
 );
+
 
 const Header = ({ title, subtitle, right }: { title: string; subtitle?: string; right?: React.ReactNode }) => (
   <div className="mb-6 flex items-start justify-between">
