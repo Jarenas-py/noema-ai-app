@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  Battery, Bell, ChevronRight, Circle, Clock, Fingerprint, Focus, Home,
+  Bell, ChevronRight, Circle, Fingerprint, Focus, Home,
   Lock, MessageCircle, Mic, Moon, Send, Shield, Sparkles, Sun, Timer,
   User, Users, X, Check, ArrowRight, ArrowLeft, Play, Pause, Zap,
-  ChevronDown, Radio, Waves, Activity, Eye, EyeOff,
+  ChevronDown, Activity, Eye, EyeOff,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -151,11 +151,6 @@ function NoemaApp() {
       <div className="min-h-screen w-full bg-background text-foreground flex justify-center">
         {/* Phone frame */}
         <div className="relative w-full max-w-[430px] min-h-screen md:my-6 md:min-h-[900px] md:max-h-[900px] md:rounded-[44px] md:border md:border-border md:overflow-hidden md:shadow-2xl grid-bg">
-          {/* status bar */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-30 flex items-center justify-between px-6 pt-3 font-mono text-[10px] uppercase tracking-widest text-muted">
-            <span>9:41</span>
-            <span className="flex items-center gap-1"><Radio className="h-3 w-3" /><Waves className="h-3 w-3" /><Battery className="h-3 w-3" /></span>
-          </div>
 
           {/* scanline */}
           <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden md:rounded-[44px]">
