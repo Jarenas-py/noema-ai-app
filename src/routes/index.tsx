@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  Bell, ChevronRight, Circle, Fingerprint, Focus, Home,
-  Lock, MessageCircle, Mic, Moon, Send, Shield, Sparkles, Sun, Timer,
+  Bell, Bot, ChevronRight, Circle, Fingerprint, Focus, Home,
+  Lock, MessageCircle, Mic, Moon, Send, Shield, Sun, Timer,
   User, Users, X, Check, ArrowRight, ArrowLeft, Play, Pause, Zap,
   ChevronDown, Activity, Eye, EyeOff,
 } from "lucide-react";
@@ -203,7 +203,7 @@ function NoemaApp() {
 function TabBar({ current, onChange }: { current: ScreenKey; onChange: (s: ScreenKey) => void }) {
   const tabs: { key: ScreenKey; icon: React.ElementType; label: string }[] = [
     { key: "dashboard", icon: Home, label: "Hub" },
-    { key: "companion", icon: Sparkles, label: "Noema" },
+    { key: "companion", icon: Bot, label: "Noema" },
     { key: "triage", icon: MessageCircle, label: "Triage" },
     { key: "bubble", icon: Users, label: "Bubble" },
     { key: "focus-prompt", icon: Focus, label: "Focus" },
