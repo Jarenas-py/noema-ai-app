@@ -74,8 +74,9 @@ const Header = ({ title, subtitle, right }: { title: string; subtitle?: string; 
 );
 
 const Card = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div className={`rounded-2xl border border-border bg-surface/60 backdrop-blur-xl ${className}`}>{children}</div>
+  <div className={`rounded-2xl border border-border bg-surface/60 backdrop-blur-xl hover-lift ${className}`}>{children}</div>
 );
+
 
 const Tag = ({ children, tone = "muted" }: { children: React.ReactNode; tone?: "muted" | "warn" | "danger" | "ok" | "accent" }) => {
   const tones = {
