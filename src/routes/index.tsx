@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  Bell, ChevronRight, Circle, Fingerprint, Focus, Home,
-  Lock, MessageCircle, Mic, Moon, Send, Shield, Sparkles, Sun, Timer,
+  Bell, Bot, ChevronRight, Circle, Fingerprint, Focus, Home,
+  Lock, MessageCircle, Mic, Moon, Send, Shield, Sun, Timer,
   User, Users, X, Check, ArrowRight, ArrowLeft, Play, Pause, Zap,
   ChevronDown, Activity, Eye, EyeOff,
 } from "lucide-react";
