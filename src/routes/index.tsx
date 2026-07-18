@@ -60,8 +60,9 @@ type ChatMsg = { id: string; from: "noema" | "user"; text: string; time: string 
 /* ============== SHARED UI ============== */
 
 const Screen = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div className={`h-full w-full overflow-y-auto overflow-x-hidden px-5 pb-28 pt-6 ${className}`}>{children}</div>
+  <div className={`h-full w-full overflow-y-auto overflow-x-hidden px-5 pb-28 pt-6 stagger-parent ${className}`}>{children}</div>
 );
+
 
 const Header = ({ title, subtitle, right }: { title: string; subtitle?: string; right?: React.ReactNode }) => (
   <div className="mb-6 flex items-start justify-between">
@@ -74,8 +75,9 @@ const Header = ({ title, subtitle, right }: { title: string; subtitle?: string; 
 );
 
 const Card = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div className={`rounded-2xl border border-border bg-surface/60 backdrop-blur-xl ${className}`}>{children}</div>
+  <div className={`rounded-2xl border border-border bg-surface/60 backdrop-blur-xl hover-lift ${className}`}>{children}</div>
 );
+
 
 const Tag = ({ children, tone = "muted" }: { children: React.ReactNode; tone?: "muted" | "warn" | "danger" | "ok" | "accent" }) => {
   const tones = {
@@ -158,6 +160,7 @@ function NoemaApp() {
           </div>
 
           <div className="relative z-20 h-screen md:h-[900px] pt-6">
+            <div key={screen} className="screen-enter h-full">
             {screen === "welcome" && <WelcomeScreen onStart={() => goto("login")} />}
             {screen === "login" && <LoginScreen onLogin={() => goto("dashboard")} onRegister={() => goto("register")} />}
             {screen === "register" && <RegisterScreen onDone={() => goto("dashboard")} />}
@@ -189,7 +192,9 @@ function NoemaApp() {
             {screen === "planner" && <PlannerScreen tasks={tasks} setTasks={setTasks} focusMinutes={focusMinutesLogged} />}
             {screen === "battery" && <BatteryScreen value={battery} triageReplies={triageReplies} tasksDone={tasksDone} focusMinutes={focusMinutesLogged} />}
             {screen === "bubble" && <BubbleScreen contacts={contacts} />}
+            </div>
           </div>
+
 
           {!chromeless && <TabBar current={screen} onChange={goto} />}
         </div>
@@ -215,10 +220,12 @@ function TabBar({ current, onChange }: { current: ScreenKey; onChange: (s: Scree
           const active = current === key || (key === "focus-prompt" && current === "focus-active") || (key === "bubble" && current === "battery") || (key === "triage" && current === "planner");
           return (
             <button key={key} onClick={() => onChange(key)}
-              className={`group relative flex-1 flex flex-col items-center gap-0.5 rounded-full px-2 py-1.5 transition ${active ? "bg-foreground text-background" : "text-muted hover:text-foreground"}`}>
-              <Icon className="h-4 w-4" strokeWidth={1.75} />
+              className={`group relative flex-1 flex flex-col items-center gap-0.5 rounded-full px-2 py-1.5 ${active ? "bg-foreground text-background scale-105" : "text-muted hover:text-foreground hover:-translate-y-0.5"}`}>
+              <Icon className={`h-4 w-4 ${active ? "scale-110" : "group-hover:scale-110"}`} strokeWidth={1.75} />
               <span className="font-mono text-[9px] uppercase tracking-widest">{label}</span>
+              {active && <span className="absolute -top-1 h-1 w-1 rounded-full bg-accent noema-pulse" />}
             </button>
+
           );
         })}
       </div>

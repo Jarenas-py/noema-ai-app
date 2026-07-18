@@ -44,6 +44,17 @@
 @layer base {
   html, body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
   * { border-color: var(--color-border); }
+  button, a, [role="button"] {
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 220ms ease,
+                color 220ms ease,
+                border-color 220ms ease,
+                box-shadow 220ms ease,
+                opacity 220ms ease;
+  }
+  button:active, [role="button"]:active { transform: scale(0.96); }
+  input, textarea { transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease; }
+  svg { transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), color 220ms ease, opacity 220ms ease; }
 }
 
 @keyframes noema-pulse {
@@ -59,11 +70,86 @@
   0% { transform: translateY(-100%); }
   100% { transform: translateY(100%); }
 }
+@keyframes noema-fade-up {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes noema-fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes noema-scale-in {
+  0% { opacity: 0; transform: scale(0.94); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes noema-slide-right {
+  0% { opacity: 0; transform: translateX(16px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes noema-breath {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.02); filter: brightness(1.15); }
+}
+@keyframes noema-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes noema-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes noema-glow {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(1 0 0 / 0); }
+  50% { box-shadow: 0 0 24px 2px oklch(0.85 0.12 90 / 0.25); }
+}
+
 .noema-pulse { animation: noema-pulse 3s ease-in-out infinite; }
 .noema-drift { animation: noema-drift 8s ease-in-out infinite; }
+.noema-breath { animation: noema-breath 4s ease-in-out infinite; }
+.noema-float { animation: noema-float 5s ease-in-out infinite; }
+.noema-glow { animation: noema-glow 3s ease-in-out infinite; }
+
+.animate-fade-up { animation: noema-fade-up 500ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-in { animation: noema-fade-in 400ms ease-out both; }
+.animate-scale-in { animation: noema-scale-in 380ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-slide-right { animation: noema-slide-right 380ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Screen transition wrapper */
+.screen-enter { animation: noema-fade-up 420ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Stagger: apply .stagger-parent on a container and children auto-delay */
+.stagger-parent > * { animation: noema-fade-up 500ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.stagger-parent > *:nth-child(1) { animation-delay: 40ms; }
+.stagger-parent > *:nth-child(2) { animation-delay: 100ms; }
+.stagger-parent > *:nth-child(3) { animation-delay: 160ms; }
+.stagger-parent > *:nth-child(4) { animation-delay: 220ms; }
+.stagger-parent > *:nth-child(5) { animation-delay: 280ms; }
+.stagger-parent > *:nth-child(6) { animation-delay: 340ms; }
+.stagger-parent > *:nth-child(7) { animation-delay: 400ms; }
+.stagger-parent > *:nth-child(8) { animation-delay: 460ms; }
+.stagger-parent > *:nth-child(n+9) { animation-delay: 520ms; }
+
+.hover-lift { transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease, border-color 260ms ease; }
+.hover-lift:hover { transform: translateY(-2px); border-color: oklch(1 0 0 / 0.18); }
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, oklch(1 0 0 / 0.06) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: noema-shimmer 2.4s linear infinite;
+}
+
 .grid-bg {
   background-image:
     linear-gradient(to right, oklch(1 0 0 / 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, oklch(1 0 0 / 0.03) 1px, transparent 1px);
   background-size: 32px 32px;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
