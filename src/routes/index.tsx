@@ -220,10 +220,12 @@ function TabBar({ current, onChange }: { current: ScreenKey; onChange: (s: Scree
           const active = current === key || (key === "focus-prompt" && current === "focus-active") || (key === "bubble" && current === "battery") || (key === "triage" && current === "planner");
           return (
             <button key={key} onClick={() => onChange(key)}
-              className={`group relative flex-1 flex flex-col items-center gap-0.5 rounded-full px-2 py-1.5 transition ${active ? "bg-foreground text-background" : "text-muted hover:text-foreground"}`}>
-              <Icon className="h-4 w-4" strokeWidth={1.75} />
+              className={`group relative flex-1 flex flex-col items-center gap-0.5 rounded-full px-2 py-1.5 ${active ? "bg-foreground text-background scale-105" : "text-muted hover:text-foreground hover:-translate-y-0.5"}`}>
+              <Icon className={`h-4 w-4 ${active ? "scale-110" : "group-hover:scale-110"}`} strokeWidth={1.75} />
               <span className="font-mono text-[9px] uppercase tracking-widest">{label}</span>
+              {active && <span className="absolute -top-1 h-1 w-1 rounded-full bg-accent noema-pulse" />}
             </button>
+
           );
         })}
       </div>
