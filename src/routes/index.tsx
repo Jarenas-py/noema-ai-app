@@ -157,7 +157,7 @@ function NoemaApp() {
             <div className="absolute inset-x-0 h-24 opacity-[0.04] bg-gradient-to-b from-transparent via-foreground to-transparent" style={{ animation: "noema-scan 12s linear infinite" }} />
           </div>
 
-          <div className="relative z-20 h-screen md:h-[900px] pt-6">
+          <div key={screen} className="noema-screen-in relative z-20 h-screen md:h-[900px] pt-6">
             {screen === "welcome" && <WelcomeScreen onStart={() => goto("login")} />}
             {screen === "login" && <LoginScreen onLogin={() => goto("dashboard")} onRegister={() => goto("register")} />}
             {screen === "register" && <RegisterScreen onDone={() => goto("dashboard")} />}
@@ -191,6 +191,7 @@ function NoemaApp() {
             {screen === "bubble" && <BubbleScreen contacts={contacts} />}
           </div>
 
+
           {!chromeless && <TabBar current={screen} onChange={goto} />}
         </div>
       </div>
@@ -215,8 +216,8 @@ function TabBar({ current, onChange }: { current: ScreenKey; onChange: (s: Scree
           const active = current === key || (key === "focus-prompt" && current === "focus-active") || (key === "bubble" && current === "battery") || (key === "triage" && current === "planner");
           return (
             <button key={key} onClick={() => onChange(key)}
-              className={`group relative flex-1 flex flex-col items-center gap-0.5 rounded-full px-2 py-1.5 transition ${active ? "bg-foreground text-background" : "text-muted hover:text-foreground"}`}>
-              <Icon className="h-4 w-4" strokeWidth={1.75} />
+              className={`group relative flex-1 flex flex-col items-center gap-0.5 rounded-full px-2 py-1.5 transition-all duration-300 ease-out active:scale-95 ${active ? "bg-foreground text-background scale-[1.02]" : "text-muted hover:text-foreground hover:bg-surface/40"}`}>
+              <Icon className={`h-4 w-4 transition-transform duration-300 ease-out ${active ? "scale-110" : "group-hover:-translate-y-0.5"}`} strokeWidth={1.75} />
               <span className="font-mono text-[9px] uppercase tracking-widest">{label}</span>
             </button>
           );
