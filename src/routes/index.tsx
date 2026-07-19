@@ -157,7 +157,7 @@ function NoemaApp() {
             <div className="absolute inset-x-0 h-24 opacity-[0.04] bg-gradient-to-b from-transparent via-foreground to-transparent" style={{ animation: "noema-scan 12s linear infinite" }} />
           </div>
 
-          <div className="relative z-20 h-screen md:h-[900px] pt-6">
+          <div key={screen} className="noema-screen-in relative z-20 h-screen md:h-[900px] pt-6">
             {screen === "welcome" && <WelcomeScreen onStart={() => goto("login")} />}
             {screen === "login" && <LoginScreen onLogin={() => goto("dashboard")} onRegister={() => goto("register")} />}
             {screen === "register" && <RegisterScreen onDone={() => goto("dashboard")} />}
@@ -190,6 +190,7 @@ function NoemaApp() {
             {screen === "battery" && <BatteryScreen value={battery} triageReplies={triageReplies} tasksDone={tasksDone} focusMinutes={focusMinutesLogged} />}
             {screen === "bubble" && <BubbleScreen contacts={contacts} />}
           </div>
+
 
           {!chromeless && <TabBar current={screen} onChange={goto} />}
         </div>
