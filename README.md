@@ -77,32 +77,7 @@ This repository uses separate branches for separate concerns:
 **Android**
 - Java
 - Android WebView (min SDK 24, tested/built with API 33+)
-
----
-
-## 🚀 Running the Web App Locally
-
-```bash
-# Clone the repository
-git clone https://github.com/Jarenas-py/noema-ai-app.git
-cd noema-ai-app
-
-# Install dependencies
-bun install
-
-# Start the dev server
-bun run dev
-```
-
-The app will be available at `http://localhost:3000` (or whatever port Vite assigns).
-
-To build for production:
-
-```bash
-bun run build
-bun run preview
-```
-
+  
 ---
 
 ## 🙋 About
